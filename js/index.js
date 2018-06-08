@@ -5,16 +5,15 @@ const NewsAPI = require('newsapi');
 const embed = new Discord.RichEmbed();
 const url = `https://newsapi.org/v2/top-headlines?sources=ign&apiKey=${config.API_KEY}`;
 const fetch = require('node-fetch');
-let arr = [];
-
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', (message) => {
+    let arr = [];
     if(message.author.bot) return;
-    if(message.content === 'news') {
+    if(message.content === `${config.prefix}news`) {
         fetch(url).then(function (res) {
             return res.json();
         }).then(function (res) {
@@ -24,17 +23,19 @@ client.on('message', (message) => {
                 arr.push(p);
             }
         }).then(function (res) {
+            message.reply(`Here's the latest news!`);
             let first = arr[0];
-            embed.setColor('#ecf0f1');
+            if (first.author !== null) {
+                embed.setAuthor(first.author);
+            } 
+            embed.setColor('#2c3e50');
             embed.setTitle(first.title);
             embed.addField('Source:', first.source.name, true);
             embed.setURL(first.url);
-            embed.setImage(first.urlToImage);
+            embed.setThumbnail(first.urlToImage);
             embed.setDescription(first.description);
-            embed.setAuthor(first.author);
             embed.setTimestamp(first.publishedAt);
-            embed.addBlankField(true);
-            embed.setFooter('Bot by Arade || Rovenway EST. 2016');
+            embed.setFooter('Bot by Arade || .Andrade EST. 2016');
             message.channel.send({embed});
         });
     };
