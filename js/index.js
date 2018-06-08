@@ -13,7 +13,7 @@ client.on('ready', () => {
 client.on('message', (message) => {
     let arr = [];
     if(message.author.bot) return;
-    if(message.content === `${config.prefix}news`) {
+    if(message.content === `!news`) {
         fetch(url).then(function (res) {
             return res.json();
         }).then(function (res) {
