@@ -3,11 +3,11 @@
 
 #### Where the news is coming from.
 > I'm using an API called newsapi. In the news api there are several
-> different news sources and I opted for IGN news as of June 7, 2018.
+> different news sources and we opted for IGN news as of June 7, 2018.
 [newsapi](https://newsapi.org/s/ign-api)
 
 #### List of commands you can use.
-> As of June 7, 2018 I have only implemented 1 command. This command only  gets the very first news topic. 
+> As of June 7, 2018 we have only implemented 1 command. This command only  gets the very first news topic. 
 > How to use.
 > Simply type, '!news' to get the bot to run. 
 
