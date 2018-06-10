@@ -30,12 +30,12 @@ client.on('message', (message) => {
             } 
             embed.setColor('#2c3e50');
             embed.setTitle(first.title);
-            embed.addField('Source:', first.source.name, true);
+            embed.addField('Source:', first.source.name);
             embed.setURL(first.url);
-            embed.setThumbnail(first.urlToImage);
+            embed.setImage(first.urlToImage);
             embed.setDescription(first.description);
             embed.setTimestamp(first.publishedAt);
-            embed.setFooter('Bot by Arade || .Andrade EST. 2016');
+            embed.setFooter('Bot by Arade || Rovenway EST. 2016');
             message.channel.send({embed});
         });
     };
