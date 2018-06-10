@@ -11,34 +11,63 @@ client.on('ready', () => {
 });
 
 client.on('message', (message) => {
-    let arr = [];
+    let arr5 = [];
     if(message.author.bot) return;
-    if(message.content === `!news`) {
+    if(message.content === `!news 5`) {
         fetch(url).then(function (res) {
             return res.json();
         }).then(function (res) {
             let art = res.articles;
             for (let i in art) {
                 let p = art[i];
-                arr.push(p);
+                arr5.push(p);
             }
         }).then(function (res) {
             message.reply(`Here's the latest news!`);
-            let first = arr[0];
-            if (first.author !== null) {
-                embed.setAuthor(first.author);
-            } 
-            embed.setColor('#2c3e50');
-            embed.setTitle(first.title);
-            embed.addField('Source:', first.source.name);
-            embed.setURL(first.url);
-            embed.setImage(first.urlToImage);
-            embed.setDescription(first.description);
-            embed.setTimestamp(first.publishedAt);
-            embed.setFooter('Bot by Arade || Rovenway EST. 2016');
-            message.channel.send({embed});
+            let firstFive = arr5.slice(0,5);
+            for (let j = 0; j < firstFive.length; j++) {  
+                message.reply(firstFive[j].url);   
+                console.log(firstFive[j].url);        
+                // if (firstFive[j].author !== null) {
+                //     embed.setAuthor(firstFive[j].author);
+                // } 
+                // embed.setColor('#2c3e50');
+                // embed.setTitle(firstFive[j].title);     
+                // embed.setURL(firstFive[j].url);
+                // embed.setImage(firstFive[j].urlToImage);
+                // embed.setDescription(firstFive[j].description);
+                // embed.setTimestamp(firstFive[j].publishedAt);
+                // embed.setFooter('Bot by Arade | Rovenway EST. 2016');   
+                // message.channel.send({embed});
+            }
         });
     };
+    // let arr = [];
+    // if(message.content === `!news`) {
+    //     fetch(url).then(function (res) {
+    //         return res.json();
+    //     }).then(function (res) {
+    //         let art = res.articles;
+    //         for (let i in art) {
+    //             let p = art[i];
+    //             arr.push(p);
+    //         }
+    //     }).then(function (res) {
+    //         message.reply(`Here's the latest news!`);
+    //         let first = arr[0];
+    //         if (first.author !== null) {
+    //             embed.setAuthor(first.author);
+    //         } 
+    //         embed.setColor('#2c3e50');
+    //         embed.setTitle(first.title);     
+    //         embed.setURL(first.url);
+    //         embed.setImage(first.urlToImage);
+    //         embed.setDescription(first.description);
+    //         embed.setTimestamp(first.publishedAt);
+    //         embed.setFooter('Bot by Arade | Rovenway EST. 2016');
+    //         message.channel.send({embed});
+    //     });
+    // };
 });
 
 client.login(config.token);
